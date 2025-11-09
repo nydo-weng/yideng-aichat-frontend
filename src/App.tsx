@@ -2,6 +2,7 @@ import type { FormEvent, KeyboardEvent } from 'react';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import { useChat } from './hooks/useChat';
+import { MarkdownMessage } from './components/MarkdownMessage';
 
 function App() {
   const { messages, isLoading, error, sendQuestion, resetChat } = useChat();
@@ -81,7 +82,7 @@ function App() {
                   <span className="message-role">
                     {message.role === 'user' ? '你 (User)' : 'AI (Assistant)'}
                   </span>
-                  <p>{message.content}</p>
+                  <MarkdownMessage content={message.content} />
                 </li>
               ))}
             </ul>
