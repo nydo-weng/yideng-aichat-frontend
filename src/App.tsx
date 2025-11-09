@@ -7,6 +7,7 @@ function App() {
   const { messages, isLoading, error, sendQuestion, resetChat } = useChat();
   const [question, setQuestion] = useState('');
   const messageListRef = useRef<HTMLUListElement | null>(null);
+  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
 
   const isSubmitDisabled = useMemo(
     () => !question.trim() || isLoading,
@@ -45,6 +46,11 @@ function App() {
     if (lastMessage) {
       lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
+  }, [messages]);
+
+  useEffect(() => {
+    // 每次收到回应后让输入框保持聚焦，方便继续提问
+    textareaRef.current?.focus();
   }, [messages]);
 
   return (
@@ -94,6 +100,7 @@ function App() {
             onChange={(event) => setQuestion(event.target.value)}
             onKeyDown={handleTextareaKeyDown}
             disabled={isLoading}
+            ref={textareaRef}
           />
           <div className="composer-actions">
             <button
