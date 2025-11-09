@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react';
+import type { FormEvent, KeyboardEvent } from 'react';
 import { useMemo, useState } from 'react';
 import './App.css';
 import { useChat } from './hooks/useChat';
@@ -12,13 +12,26 @@ function App() {
     [question, isLoading]
   );
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSend = async () => {
     if (!question.trim()) {
       return;
     }
     await sendQuestion(question);
     setQuestion('');
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await handleSend();
+  };
+
+  const handleTextareaKeyDown = async (
+    event: KeyboardEvent<HTMLTextAreaElement>
+  ) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      await handleSend();
+    }
   };
 
   return (
@@ -66,6 +79,7 @@ function App() {
             placeholder="输入你的问题..."
             value={question}
             onChange={(event) => setQuestion(event.target.value)}
+            onKeyDown={handleTextareaKeyDown}
             disabled={isLoading}
           />
           <div className="composer-actions">

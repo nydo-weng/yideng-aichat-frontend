@@ -31,7 +31,7 @@
 ## ⚙️ 環境變量 (Environment Variables)
 | 變量名稱 | 說明 |
 | --- | --- |
-| `VITE_GRAPHQL_ENDPOINT` | Cloudflare Workers GraphQL 端點，預設為 `https://yideng-aichat-proxy.wengjiaxin959.workers.dev/` |
+| `VITE_GRAPHQL_ENDPOINT` | Cloudflare Workers GraphQL 端點，預設為 `https://yideng-aichat-serverless.wengjiaxin959.workers.dev/` |
 
 ## 🧱 重要檔案 (Key Files)
 - `src/config.ts`：集中管理 GraphQL 端點。
