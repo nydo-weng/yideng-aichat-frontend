@@ -1,11 +1,12 @@
 import type { FormEvent, KeyboardEvent } from 'react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import './App.css';
 import { useChat } from './hooks/useChat';
 
 function App() {
   const { messages, isLoading, error, sendQuestion, resetChat } = useChat();
   const [question, setQuestion] = useState('');
+  const messageListRef = useRef<HTMLUListElement | null>(null);
 
   const isSubmitDisabled = useMemo(
     () => !question.trim() || isLoading,
@@ -34,6 +35,18 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    // 滚动到最新讯息以确保对话上下文可见
+    if (!messageListRef.current) {
+      return;
+    }
+
+    const lastMessage = messageListRef.current.lastElementChild;
+    if (lastMessage) {
+      lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
+    }
+  }, [messages]);
+
   return (
     <div className="app-shell">
       <header className="hero">
@@ -53,7 +66,7 @@ function App() {
               <p>开始输入问题，AI 助手将会回复。</p>
             </div>
           ) : (
-            <ul className="message-list">
+            <ul className="message-list" ref={messageListRef}>
               {messages.map((message) => (
                 <li
                   key={message.id}
