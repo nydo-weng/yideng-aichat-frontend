@@ -22,6 +22,44 @@
     color: #f3f7ff;
   }
 
+  .hero-headline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .hero-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .hero-title-row h1 {
+    flex: 1;
+  }
+
+  .header-clear {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.1);
+    color: #f9fbff;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    line-height: 1;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+  }
+
+  .header-clear:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   .hero h1 {
     font-size: clamp(2rem, 3vw, 2.5rem);
     margin: 0;
@@ -162,6 +200,12 @@
     padding: 1.25rem;
   }
 
+  .composer-input-row {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+  }
+
   .composer textarea {
     width: 100%;
     resize: none;
@@ -172,6 +216,25 @@
     font-family: inherit;
     background-color: transparent;
     color: inherit;
+  }
+
+  .send-inline {
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #7a5af8, #6246ea);
+    color: #fff;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .send-inline:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   .composer textarea:disabled {
@@ -220,6 +283,46 @@
   }
 
   @media (max-width: 640px) {
+    .app-shell {
+      padding: 1.25rem 1rem 2rem;
+      height: 100vh;
+    }
+
+    .hero {
+      padding: 1.25rem;
+      gap: 0.5rem;
+    }
+
+    .hero .eyebrow,
+    .hero .subtitle {
+      display: none;
+    }
+
+    .hero h1 {
+      font-size: 1.6rem;
+    }
+
+    .chat-window {
+      padding: 1rem;
+    }
+
+    .composer {
+      padding: 1rem;
+      gap: 0.5rem;
+    }
+
+    .composer-input-row {
+      align-items: center;
+    }
+
+    .send-inline {
+      display: inline-flex;
+    }
+
+    .message-body {
+      font-size: 0.95rem;
+    }
+
     .message {
       max-width: 100%;
     }
@@ -228,8 +331,34 @@
       flex-direction: column;
     }
 
+    .composer-actions button[type='submit'] {
+      display: none;
+    }
+
+    .composer-actions .ghost {
+      display: none;
+    }
+
+    .header-clear {
+      display: inline-flex;
+    }
+
     button {
       width: 100%;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .header-clear {
+      display: none;
+    }
+
+    .composer-actions .ghost {
+      display: inline-flex;
+    }
+
+    .composer-actions button[type='submit'] {
+      display: inline-flex;
     }
   }
 }

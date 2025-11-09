@@ -55,9 +55,20 @@ function App() {
   return (
     <div className="app-shell">
       <header className="hero">
-        <div>
+        <div className="hero-headline">
           <p className="eyebrow">Cloudflare Pages · GraphQL · React + TS</p>
-          <h1>YiDeng AI Chat - nono</h1>
+          <div className="hero-title-row">
+            <h1>YiDeng AI Chat - nono</h1>
+            <button
+              type="button"
+              className="header-clear"
+              onClick={resetChat}
+              disabled={isLoading || messages.length === 0}
+              aria-label="清除对话"
+            >
+              ×
+            </button>
+          </div>
           <p className="subtitle">
             与部署在 Cloudflare Workers 的 AI 助手即时对话
           </p>
@@ -92,15 +103,25 @@ function App() {
         {error && <div className="error-banner">错误：{error}</div>}
 
         <form className="composer" onSubmit={handleSubmit}>
-          <textarea
-            rows={3}
-            placeholder="输入你的问题..."
-            value={question}
-            onChange={(event) => setQuestion(event.target.value)}
-            onKeyDown={handleTextareaKeyDown}
-            disabled={isLoading}
-            ref={textareaRef}
-          />
+          <div className="composer-input-row">
+            <textarea
+              rows={3}
+              placeholder="输入你的问题..."
+              value={question}
+              onChange={(event) => setQuestion(event.target.value)}
+              onKeyDown={handleTextareaKeyDown}
+              disabled={isLoading}
+              ref={textareaRef}
+            />
+            <button
+              type="submit"
+              className="send-inline"
+              disabled={isSubmitDisabled}
+              aria-label="发送"
+            >
+              ➤
+            </button>
+          </div>
           <div className="composer-actions">
             <button
               type="button"
