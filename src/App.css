@@ -1,12 +1,14 @@
 @layer components {
   .app-shell {
-    min-height: 100vh;
+    height: 100vh;
     max-width: 960px;
+    width: min(960px, 100%);
     margin: 0 auto;
     padding: 2rem 1.5rem 3rem;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    overflow: hidden;
   }
 
   .hero {
@@ -43,6 +45,8 @@
     flex-direction: column;
     gap: 1rem;
     flex: 1;
+    min-height: 0;
+    overflow: hidden;
   }
 
   .chat-window {
@@ -53,6 +57,8 @@
     border-radius: 20px;
     padding: 1.5rem;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .message-list {
@@ -62,7 +68,8 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    max-height: 480px;
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
   }
 

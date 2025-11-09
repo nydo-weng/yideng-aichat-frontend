@@ -10,18 +10,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  height: 100%;
   min-height: 100vh;
   background: radial-gradient(circle at top, rgba(80, 108, 255, 0.25), transparent 55%), #05060b;
   color: inherit;
+  overflow: hidden;
 }
 
 #root {
+  height: 100%;
   min-height: 100vh;
 }
 

@@ -37,15 +37,13 @@ function App() {
   };
 
   useEffect(() => {
-    // 滚动到最新讯息以确保对话上下文可见
+    // 仅滚动内部列表，避免触发整页滚动条
     if (!messageListRef.current) {
       return;
     }
 
-    const lastMessage = messageListRef.current.lastElementChild;
-    if (lastMessage) {
-      lastMessage.scrollIntoView({ behavior: 'smooth', block: 'end' });
-    }
+    const listEl = messageListRef.current;
+    listEl.scrollTo({ top: listEl.scrollHeight, behavior: 'smooth' });
   }, [messages]);
 
   useEffect(() => {
